@@ -1,0 +1,1 @@
+(define fibo (lambda (n) (if (le n 1)  1 (add (fibo (sub n 1)) (fibo (sub n 2))))))

@@ -1,0 +1,1 @@
+(define fact (lambda (n) (if (lt n 2)  1 (mul n (fact (sub n 1))))))
