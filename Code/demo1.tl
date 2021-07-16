@@ -1,0 +1,1 @@
+(define a 2)(define b 3)(define c 0)(defun 	(main)	(block		(set a (add a  5))		(set b (add b 10))		(set c (add a  b))		(block			(print "a: " a (println))			(print "b: " b (println))			(print "c: " c (println)))))	(main)

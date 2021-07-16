@@ -4,7 +4,7 @@ from Core.Evaluator import *
 from datetime import datetime
 
 NAME    = "Tiny Lisp Python"
-VERSION = "v0.6.0"
+VERSION = "v0.6.5"
 AUTHOR  = "Md Shahil Ahmed"
 
 env = Environment()
@@ -72,7 +72,7 @@ def main():
 			print("Here -X is given below")
 			print()
 			print(" -h : help")
-			print(" -r : to open REPL(Read-Evaluate-PRINT-LOOP)")
+			print(" -r : to open REPL(Read-Evaluate-Print-Loop)")
 			print(" -i : interpret one by one file(s)")
 			print(" -l : link all file(s) and then interpret")
 			print()
