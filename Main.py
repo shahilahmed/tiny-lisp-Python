@@ -1,14 +1,22 @@
 from Core.Lexer  import *
 from Core.Parser import *
 from Core.Evaluator import *
+from Core.Transpiler import *
 from datetime import datetime
 
-NAME    = "Tiny Lisp Python"
-VERSION = "v0.6.5"
+NAME    = "Tiny Lisp Python with Transpiler to Python"
+VERSION = "v0.7.0"
 AUTHOR  = "Md Shahil Ahmed"
 
 env = Environment()
 env.define("pi",3.14)
+
+def transpile_source(source = ""):
+	if len(source) != 0:
+		tokens = Lexer.lex(source)
+		tree   = Parser(tokens).parse()
+		code   = transpile(tree)
+		return code
 
 def interpret_source(source = ""):
 	if len(source) != 0:
@@ -19,6 +27,13 @@ def interpret_source(source = ""):
 def interpret_file(path = ""):
 	if file_exists(file_path_full(path)):
 		interpret_source(file_get_contents(file_path_full(path)))
+
+def transpile_file(path = ""):
+	if file_exists(file_path_full(path)):
+		filename = path.split("\\")[-1].split(".")[0]
+		code = transpile_source(file_get_contents(file_path_full(path)))
+		file_put_contents(filename + ".py",code)
+		print("Path: {} has been transpiled to {} successfully.".format(path,filename + ".py"))
 
 def interpret_repl(prompt = "tl>"):
 	source  = ""
@@ -75,6 +90,7 @@ def main():
 			print(" -r : to open REPL(Read-Evaluate-Print-Loop)")
 			print(" -i : interpret one by one file(s)")
 			print(" -l : link all file(s) and then interpret")
+			print(" -t : transpile one by one file(s) to (*.py)")
 			print()
 		if command == "-r":	
 			interpret_repl()
@@ -88,6 +104,9 @@ def main():
 			for path in argv:
 				source = source + "{}\n".format(file_get_contents(file_path_full(path)))
 			interpret_source(source)
+		elif command == "-t":
+			for path in argv:
+				transpile_file(path)
 		else:
 			print("usage: python main.py -help")
 	else:
@@ -96,4 +115,5 @@ def main():
 if __name__ == "__main__":
 	interpret_file("lib\\lib.tl")
 	main()
+
 
