@@ -5,7 +5,7 @@ from Core.Transpiler import *
 from datetime import datetime
 
 NAME    = "Tiny Lisp Python with Transpiler to Python"
-VERSION = "v0.7.0"
+VERSION = "v0.8.0"
 AUTHOR  = "Md Shahil Ahmed"
 
 env = Environment()
